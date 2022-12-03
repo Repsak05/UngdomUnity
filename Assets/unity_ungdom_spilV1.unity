@@ -7218,6 +7218,7 @@ MonoBehaviour:
   displayChallenges: {fileID: 849755585}
   sliderScriptSpendLessThan: {fileID: 1282497690}
   sliderScriptTimeToFinnish: {fileID: 749427775}
+  friends: {fileID: 1887836073}
   receiveTextGold: {fileID: 1417549668}
   receiveTextDiamounds: {fileID: 254539361}
   startDay: 0
@@ -13834,6 +13835,8 @@ MonoBehaviour:
   felixPicture: {fileID: 1628788638}
   gustavPicture: {fileID: 1862404698}
   kristianPicture: {fileID: 50959276}
+  yourPoints: 0
+  yourPointsAdd: 0
   yourPicture: {fileID: 1172288262}
   firstPlacePointText: {fileID: 838019646}
   secoundPlacePointText: {fileID: 1178170990}
@@ -14007,7 +14010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1939966108
 Transform:
   m_ObjectHideFlags: 0

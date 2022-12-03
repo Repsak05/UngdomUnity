@@ -35,6 +35,7 @@ public class Friends : MonoBehaviour
 
     public void Update()
     {
+        UpdateLeaderBoard();
         yourFriends.Add(gamerTag[0]);
         yourFriends.Add(gamerTag[1]);
         yourFriends.Add(gamerTag[2]);
@@ -99,7 +100,8 @@ public class Friends : MonoBehaviour
     int kristianPoints = 6;
     public Image kristianPicture;
 
-    int yourPoints = 101;
+    public int yourPoints = 0;
+    public int yourPointsAdd = 0;
     public Image yourPicture;
 
     int nordinPlaceOnLeaderboard;
@@ -142,26 +144,42 @@ public class Friends : MonoBehaviour
         friendsOnLeaderboard.Add(gustavPoints);
         friendsOnLeaderboard.Add(yourPoints);
 
-        
+        /*
+        RectTransform pic0 = picInRow[0].GetComponent<RectTransform>();
+        pic0.anchoredPosition = new Vector2(-100, -150);
 
+        RectTransform pic1 = picInRow[1].GetComponent<RectTransform>();
+        pic1.anchoredPosition = new Vector2(0, -150);
+
+        RectTransform pic2 = picInRow[2].GetComponent<RectTransform>();
+        pic2.anchoredPosition = new Vector2(0, -150);
+        */
+
+        //transform.position(20, 10); 
+
+
+
+        //Use x.y position to locate where the pics need to bee
+        // :: Location1 = placeOnLeaderboad[0]
+        // if(placeOnLeaderboad[0] == nordin, make him first else, try another);
+    }
+    //Show friends
+    //indexOfName, sort after points, place in leaderboard
+    public void UpdateLeaderBoard()
+    {
+        
         friendsOnLeaderboard.Sort();
 
+
         //POINT TO TEXT (TOP 5)
-        firstPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4-0] + "";
-        secoundPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4-1] + "";
-        thirdPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4-2] + "";
-        forthPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4-3]+"";
-        fifthPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4-4]+"";
+        firstPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 0] + "";
+        secoundPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 1] + "";
+        thirdPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 2] + "";
+        forthPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 3]+"";
+        fifthPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 4]+"";
         //POINT TO TEXT DONE
 
-
-
-        foreach (int value in friendsOnLeaderboard)
-        {
-            print(friendsOnLeaderboard[one]);
-            one++;
-        }
-
+       
         nordinPlaceOnLeaderboard = friendsOnLeaderboard.IndexOf(nordinPoints);
         felixPlaceOnLeaderboard = friendsOnLeaderboard.IndexOf(felixPoints);
         gustavPlaceOnLeaderboard = friendsOnLeaderboard.IndexOf(gustavPoints);
@@ -199,32 +217,16 @@ public class Friends : MonoBehaviour
         picInRow[kristianPlaceOnLeaderboard] = kristianPicture;
         picInRow[yourPlaceOnLeaderboard] = yourPicture;
 
-        for(int i = 0; i<friendsOnLeaderboard.Count; i++)
+        for (int i = 0; i < friendsOnLeaderboard.Count; i++)
         {
             RectTransform picture = picInRow[i].GetComponent<RectTransform>();
-            picture.anchoredPosition = new Vector2(i*-150+120, -150);
+            picture.anchoredPosition = new Vector2(i * -150 + 120, -150);
         }
 
-
-        /*
-        RectTransform pic0 = picInRow[0].GetComponent<RectTransform>();
-        pic0.anchoredPosition = new Vector2(-100, -150);
-
-        RectTransform pic1 = picInRow[1].GetComponent<RectTransform>();
-        pic1.anchoredPosition = new Vector2(0, -150);
-
-        RectTransform pic2 = picInRow[2].GetComponent<RectTransform>();
-        pic2.anchoredPosition = new Vector2(0, -150);
-        */
-
-        //transform.position(20, 10); 
-
-
-
-        //Use x.y position to locate where the pics need to bee
-        // :: Location1 = placeOnLeaderboad[0]
-        // if(placeOnLeaderboad[0] == nordin, make him first else, try another);
     }
-    //Show friends
-    //indexOfName, sort after points, place in leaderboard
+    public void AddPoints()
+    {
+        yourPoints += yourPointsAdd;
+        friendsOnLeaderboard[yourPlaceOnLeaderboard] = yourPoints;
+    }
 }

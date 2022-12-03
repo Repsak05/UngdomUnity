@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,9 +25,11 @@ public class CreateChallenge : MonoBehaviour
 
     public SliderScript sliderScriptSpendLessThan;
     public SliderScript sliderScriptTimeToFinnish;
+    public Friends friends;
 
     public GameObject receiveTextGold;
     float receieveAmountOfGold;
+    int startNewChallengeOne = 0;
 
     public GameObject receiveTextDiamounds;
     float receiveAmountOfDiamounds;
@@ -38,6 +41,7 @@ public class CreateChallenge : MonoBehaviour
 
     void Update()
     {
+        print("startNEWCHALLWFNW = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + startNewChallengeOne);
         //print("Spend less than: " + sliderScriptSpendLessThan.value);
         //print("Time To Finnish: " + sliderScriptTimeToFinnish.value);
         CalculateGold();
@@ -56,6 +60,7 @@ public class CreateChallenge : MonoBehaviour
     {
         float value = sliderScriptSpendLessThan.slider.maxValue + 100;
         receieveAmountOfGold = (value-sliderScriptSpendLessThan.value) / 100 * sliderScriptTimeToFinnish.value;
+        
     }
 
     public void StartButtonHasBeenClicked()
@@ -65,6 +70,7 @@ public class CreateChallenge : MonoBehaviour
         {
             print("Challenge accepted");
             startDay = newMonth.totalAmountOfDays;
+            startNewChallengeOne = 0;
 
         }
         
@@ -80,9 +86,21 @@ public class CreateChallenge : MonoBehaviour
 
         if((newMonth.totalAmountOfDays - startDay) >= sliderScriptTimeToFinnish.value && newMonth.totalIncome <= sliderScriptSpendLessThan.value) // && challenge completed
         {
+            
             //Check if you've lost of won the challenge
             //Then give rewars if succeded
             print("You've won the challenge");
+            if(startNewChallengeOne < 1 )
+            {
+                
+                print("Receieve amount of gold SSSSSSSSSSSSSSSSSSSSSSSSSSS: " + receieveAmountOfGold);
+                print("YOU'VE RECEIVED YOUR GOLD" + (int)Math.Round((double)receieveAmountOfGold, 0));
+                startNewChallengeOne++;
+                friends.yourPointsAdd += (int)Math.Round((double)receieveAmountOfGold, 0);
+                print("YOUR POINTS KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK: " + friends.yourPointsAdd);
+                friends.AddPoints();
+            }
+            
         }
     }
     void CalculateDiamounds()

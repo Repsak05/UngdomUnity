@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class ProcentFillCirkel : MonoBehaviour
 {
@@ -16,11 +17,14 @@ public class ProcentFillCirkel : MonoBehaviour
     public MoneyUsed moneyUsed;
     public float moneyLeft;
 
+    public GameObject moneyLeftText;
+
     // Update is called once per frame
     public void Update()
     {
         FillCirkel();
         MoneyLeftText();
+       // moneyLeftText.GetComponent<Text>().text = moneyLeft + "$";
     }
     public void FillCirkel()
     {

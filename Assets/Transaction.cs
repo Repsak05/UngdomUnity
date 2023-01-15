@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Transaction : MonoBehaviour
 {
     public MoneyUsed moneyUsed;
+    public InputTransfer inputTransfer;
+    public NewMonth newMonth;
     // Start is called before the first frame update
     string[] categories = { "Transport", "Household", "Food", "Lesuer", "Travel", "Other" };
     string[] transport = { "Fuel", "Public transport", "Parking" };
@@ -25,6 +27,9 @@ public class Transaction : MonoBehaviour
     int[] otherMoney;
 
     public float[] mostRecentMoneyUsed = { 0, 0, 0, 0, 0 };
+
+    public GameObject totalMoneyUsedText;
+
     float usedMoneyValue;
     int timesRunThru = 0;
     public GameObject textOne;
@@ -104,7 +109,8 @@ public class Transaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //RecentMoneyUsed();
-    }
 
+        totalMoneyUsedText.GetComponent<Text>().text = (inputTransfer.amountOfMoney - newMonth.totalIncome) + "$";
+
+    }
 }

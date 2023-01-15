@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class Friends : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Friends : MonoBehaviour
 
     void Start()
     {
+        
+
         gamerTag.Add("Felix");
         gamerTag.Add("Gustav");
         gamerTag.Add("Kristian");
@@ -39,7 +42,9 @@ public class Friends : MonoBehaviour
         yourFriends.Add(gamerTag[0]);
         yourFriends.Add(gamerTag[1]);
         yourFriends.Add(gamerTag[2]);
-        yourFriends.Add(gamerTag[3]);   
+        yourFriends.Add(gamerTag[3]);
+
+        diamoundsText.GetComponent<Text>().text = yourPoints + "";
     }
 
     public void AddNameToList()
@@ -88,16 +93,16 @@ public class Friends : MonoBehaviour
     //
     //
 
-    int nordinPoints = 5;
+    int nordinPoints = 55;
     public Image nordinPicture;
 
     int felixPoints = 21;
     public Image felixPicture;
 
-    int gustavPoints = 4;
+    int gustavPoints = 9;
     public Image gustavPicture;
 
-    int kristianPoints = 6;
+    int kristianPoints = 2;
     public Image kristianPicture;
 
     public int yourPoints = 0;
@@ -109,6 +114,11 @@ public class Friends : MonoBehaviour
     int gustavPlaceOnLeaderboard;
     int kristianPlaceOnLeaderboard;
     int yourPlaceOnLeaderboard;
+
+    //TOP 3 BOX
+    public Image box1;
+    public Image box2;
+    public Image box3;
 
     //POINT TO TEXT (TOP 5)
     public GameObject firstPlacePointText;
@@ -125,6 +135,8 @@ public class Friends : MonoBehaviour
     public GameObject forthPlaceNameText;
     public GameObject fifthPlaceNameText;
     //PERSON TEXT DONE
+
+    public GameObject diamoundsText;
 
     int one = 0;
 
@@ -143,33 +155,10 @@ public class Friends : MonoBehaviour
         friendsOnLeaderboard.Add(kristianPoints);
         friendsOnLeaderboard.Add(gustavPoints);
         friendsOnLeaderboard.Add(yourPoints);
-
-        /*
-        RectTransform pic0 = picInRow[0].GetComponent<RectTransform>();
-        pic0.anchoredPosition = new Vector2(-100, -150);
-
-        RectTransform pic1 = picInRow[1].GetComponent<RectTransform>();
-        pic1.anchoredPosition = new Vector2(0, -150);
-
-        RectTransform pic2 = picInRow[2].GetComponent<RectTransform>();
-        pic2.anchoredPosition = new Vector2(0, -150);
-        */
-
-        //transform.position(20, 10); 
-
-
-
-        //Use x.y position to locate where the pics need to bee
-        // :: Location1 = placeOnLeaderboad[0]
-        // if(placeOnLeaderboad[0] == nordin, make him first else, try another);
     }
-    //Show friends
-    //indexOfName, sort after points, place in leaderboard
     public void UpdateLeaderBoard()
     {
-        
         friendsOnLeaderboard.Sort();
-
 
         //POINT TO TEXT (TOP 5)
         firstPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 0] + "";
@@ -178,7 +167,6 @@ public class Friends : MonoBehaviour
         forthPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 3]+"";
         fifthPlacePointText.GetComponent<Text>().text = friendsOnLeaderboard[4 - 4]+"";
         //POINT TO TEXT DONE
-
        
         nordinPlaceOnLeaderboard = friendsOnLeaderboard.IndexOf(nordinPoints);
         felixPlaceOnLeaderboard = friendsOnLeaderboard.IndexOf(felixPoints);
@@ -201,26 +189,31 @@ public class Friends : MonoBehaviour
         firstPlaceNameText.GetComponent<Text>().text = namesInRow[4];
         //PERSON TEXT DONE
 
-        /*
-        placeOnLeaderboard.Add(nordinPlaceOnLeaderboard);
-        placeOnLeaderboard.Add(felixPlaceOnLeaderboard);
-        placeOnLeaderboard.Add(gustavPlaceOnLeaderboard);
-        placeOnLeaderboard.Add(kristianPlaceOnLeaderboard);
-        placeOnLeaderboard.Add(yourPlaceOnLeaderboard);
-
-        placeOnLeaderboard.Sort();
-        */
-
         picInRow[nordinPlaceOnLeaderboard] = nordinPicture;
         picInRow[gustavPlaceOnLeaderboard] = gustavPicture;
         picInRow[felixPlaceOnLeaderboard] = felixPicture;
         picInRow[kristianPlaceOnLeaderboard] = kristianPicture;
         picInRow[yourPlaceOnLeaderboard] = yourPicture;
 
-        for (int i = 0; i < friendsOnLeaderboard.Count; i++)
+        Array.Reverse(picInRow);
+        
+        for (int i = 0; i < friendsOnLeaderboard.Count+1; i++)
         {
             RectTransform picture = picInRow[i].GetComponent<RectTransform>();
-            picture.anchoredPosition = new Vector2(i * -150 + 120, -150);
+            picture.anchoredPosition = new Vector2(-600,-50*i-5);
+
+            if(i == 1)
+            {
+                box1.sprite = picInRow[i].sprite;
+            }
+            if (i == 2)
+            {
+                box2.sprite = picInRow[i].sprite;
+            }
+            if (i == 3)
+            {
+                box3.sprite = picInRow[i].sprite;
+            }
         }
 
     }

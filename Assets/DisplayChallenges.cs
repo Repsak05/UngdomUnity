@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class DisplayChallenges : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class DisplayChallenges : MonoBehaviour
         }
         UpdateSlider();
         ShowC2();
+
+
 
 
         //SetActive (the elements that should/shouldn't be there while active/done)

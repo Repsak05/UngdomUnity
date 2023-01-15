@@ -31,12 +31,14 @@ public class CreateChallenge : MonoBehaviour
     float receieveAmountOfGold;
     int startNewChallengeOne = 0;
 
+
     public GameObject receiveTextDiamounds;
     float receiveAmountOfDiamounds;
 
     //Start the challenge
     public int startDay;
     public int timesStartButtonHasBeenClicked = 0;
+    bool challengeComplete = true;
 
 
     void Update()
@@ -66,8 +68,9 @@ public class CreateChallenge : MonoBehaviour
     public void StartButtonHasBeenClicked()
     {
         //call this funtion when start button is clicked
-        if (timesStartButtonHasBeenClicked == 0)
+        if (timesStartButtonHasBeenClicked == 0 && challengeComplete == true)
         {
+            challengeComplete = false;
             print("Challenge accepted");
             startDay = newMonth.totalAmountOfDays;
             startNewChallengeOne = 0;
@@ -92,6 +95,8 @@ public class CreateChallenge : MonoBehaviour
             print("You've won the challenge");
             if(startNewChallengeOne < 1 )
             {
+                challengeComplete = true;
+                timesStartButtonHasBeenClicked = 0; //Check if it does the same as "challengeComplete"
                 
                 print("Receieve amount of gold SSSSSSSSSSSSSSSSSSSSSSSSSSS: " + receieveAmountOfGold);
                 print("YOU'VE RECEIVED YOUR GOLD" + (int)Math.Round((double)receieveAmountOfGold, 0));

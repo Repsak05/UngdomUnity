@@ -49,6 +49,7 @@ public class NewMonth : MonoBehaviour
             day++;
             daysBeforeResetCreateChallenge++;
             DailyMoneySpent();
+            //transaction.AddMoneyUsedToTotalValue();
             transaction.RecentMoneyUsed();
             if (month == allMonths[11] && day > daysPrMonth[11])
             {
